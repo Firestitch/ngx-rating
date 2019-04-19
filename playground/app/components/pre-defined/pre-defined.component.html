@@ -1,0 +1,13 @@
+<fs-rating [ngModel]="0.5"></fs-rating>
+<br>
+<fs-rating [ngModel]="2"></fs-rating>
+<br>
+<fs-rating [ngModel]="4.5" [showValue]="false"></fs-rating>
+<br>
+<fs-rating [ngModel]="2.5" [maxRange]="5" [showValue]="false">
+  <ng-template fsRatingLabel>Poor</ng-template>
+  <ng-template fsRatingLabel>Meh</ng-template>
+  <ng-template fsRatingLabel>Average</ng-template>
+  <ng-template fsRatingLabel>Good</ng-template>
+  <ng-template fsRatingLabel>Epic</ng-template>
+</fs-rating>

@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+
+:host {
+  display: inline-flex;
+
+  &.with-labels {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 8px;
+  }
+
+  &.selected {
+    color: $selected-color;
+  }
+}

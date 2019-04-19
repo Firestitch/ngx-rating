@@ -9,12 +9,12 @@ import { FsMessageModule } from '@firestitch/message';
 
 import { ToastrModule } from 'ngx-toastr';
 
-import { FsComponentModule } from '@firestitch/package';
+import { FsRatingModule } from '@firestitch/rating';
 
 import { AppMaterialModule } from './material.module';
 import {
-  ExampleComponent,
-  ExamplesComponent
+  SelectableComponent,
+  ExamplesComponent, PreDefinedComponent
 } from './components';
 import { AppComponent } from './app.component';
 
@@ -26,7 +26,7 @@ const routes: Routes = [
   bootstrap: [ AppComponent ],
   imports: [
     BrowserModule,
-    FsComponentModule,
+    FsRatingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
@@ -40,7 +40,8 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ExamplesComponent,
-    ExampleComponent
+    SelectableComponent,
+    PreDefinedComponent,
   ],
   providers: [
   ],

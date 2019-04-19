@@ -1,0 +1,13 @@
+:host {
+  display: flex;
+  align-items: center;
+  cursor: default;
+
+  &.selectable {
+    cursor: pointer;
+  }
+
+  .rating-value {
+    min-width: 1em;
+  }
+}

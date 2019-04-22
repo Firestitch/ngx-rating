@@ -4,9 +4,6 @@
   <fs-rating-star [value]="value"
                   [index]="star"
                   [labelTemplate]="labelTemplates[star - 1]"
-                  [selectionIndex]="mouseOverIndex"
                   (click)="selectStar(star)"
-                  (mouseover)="mouseOverStar(star)"
-                  (mouseleave)="mouseLeaveStar()"
   ></fs-rating-star>
 </ng-container>

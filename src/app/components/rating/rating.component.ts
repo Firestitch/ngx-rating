@@ -5,7 +5,6 @@ import {
   ContentChildren,
   forwardRef,
   HostBinding,
-  HostListener,
   Input,
   OnInit,
   QueryList,
@@ -54,12 +53,10 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
 
   public visibleValue = 0;
   public stars: number[] = [];
-  public mouseOverIndex;
   public labelTemplates: TemplateRef<FsRatingLabelDirective>[] = [];
 
   private _value: number;
   private _maxRange = 5;
-  private _inSelectionMode = true;
 
   constructor(
     private _cd: ChangeDetectorRef,
@@ -85,13 +82,6 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
     this.initStars();
   }
 
-  @HostListener('mouseleave')
-  public mouseLeaveRating() {
-    if (this.selectable && this._inSelectionMode) {
-      this.mouseOverIndex = 0;
-      this.visibleValue = 0;
-    }
-  }
 
   public writeValue(value) {
     const val = +value;
@@ -99,7 +89,6 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
     if (value !== null && typeof (val) === 'number' && val !== this.value) {
       this._value = val;
 
-      this._inSelectionMode = false;
       this.visibleValue = this._value;
 
       this._cd.detectChanges();
@@ -125,34 +114,11 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
    */
   public selectStar(index) {
     if (this.selectable) {
-      if (this._inSelectionMode) {
-        this._inSelectionMode = false;
-        this.value = index;
-        this.mouseOverIndex = undefined;
+      if (this.value && this.value === index) {
+        this.value = 0;
       } else {
-        this._inSelectionMode = true;
-        this.mouseOverStar(index);
+        this.value = index;
       }
-    }
-  }
-
-  /**
-   * Highlight sequence of stars till mouse over star
-   * @param index
-   */
-  public mouseOverStar(index) {
-    if (this.selectable && this._inSelectionMode) {
-      this.mouseOverIndex = index;
-      this.visibleValue = index;
-    }
-  }
-
-  /**
-   * Reset highlighted stars
-   */
-  public mouseLeaveStar() {
-    if (this.selectable && this._inSelectionMode) {
-      this.mouseOverIndex = undefined;
     }
   }
 

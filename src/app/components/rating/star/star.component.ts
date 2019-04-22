@@ -27,18 +27,13 @@ export class FsRatingStarComponent {
   set value(value) {
     this._value = value;
 
-    this._updateType();
-  }
-
-  @Input()
-  set selectionIndex(value) {
     if (typeof (value) === 'number') {
       this.type = this.index <= value
         ? StarTypes.Filled
         : StarTypes.Empty;
-    } else {
-      this._updateType();
     }
+
+    this._updateType();
   }
 
   @HostBinding('class.selected')

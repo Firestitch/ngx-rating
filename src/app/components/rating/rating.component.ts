@@ -38,6 +38,12 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
   public showValue = true;
 
   @Input()
+  public unselectedColor = '#c4c4c4';
+
+  @Input()
+  public selectedColor = '#F8C100';
+
+  @Input()
   @HostBinding('class.selectable')
   public selectable = false;
 

@@ -20,6 +20,12 @@ export class FsRatingStarComponent {
   public index: number;
 
   @Input()
+  public unselectedColor = '#c4c4c4';
+
+  @Input()
+  public selectedColor = '#F8C100';
+
+  @Input()
   @HostBinding('class.with-labels')
   public labelTemplate: TemplateRef<FsRatingLabelDirective>;
 

@@ -9,23 +9,27 @@
   <ng-template [ngTemplateOutlet]="star"></ng-template>
 </ng-template>
 
-
 <ng-template #star>
-  <ng-container [ngSwitch]="type">
-    <ng-container *ngSwitchCase="types.Filled">
-      <i class="material-icons" [style.color]="selectedColor">
-        star
-      </i>
+  <div class="star" [ngClass]="type">
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="types.Filled">
+        <i class="material-icons selected" [style.color]="selectedColor">
+          star
+        </i>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.Half">
+        <i class="material-icons selected" [style.color]="selectedColor" [style.width]="halfWidth + '%'">
+          star
+        </i>
+        <i class="material-icons unselected" [style.color]="unselectedColor">
+          star
+        </i>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.Empty">
+        <i class="material-icons unselected" [style.color]="unselectedColor">
+          star
+        </i>
+      </ng-container>
     </ng-container>
-    <ng-container *ngSwitchCase="types.Half">
-      <i class="material-icons" [style.color]="selectedColor">
-        star_half
-      </i>
-    </ng-container>
-    <ng-container *ngSwitchCase="types.Empty">
-      <i class="material-icons" [style.color]="unselectedColor">
-        star_border
-      </i>
-    </ng-container>
-  </ng-container>
+  </div>
 </ng-template>

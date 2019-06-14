@@ -8,4 +8,21 @@
     align-items: center;
     padding: 0 8px;
   }
+
+  .star {
+    position: relative;
+  }
+
+  .star.half {
+    .selected {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .unselected {
+      position: absolute;
+      left: 0;
+    }
+  }
 }

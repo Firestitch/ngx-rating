@@ -7,7 +7,6 @@ enum StarTypes {
   Empty = 'empty'
 }
 
-
 @Component({
   selector: 'fs-rating-star',
   templateUrl: 'star.component.html',
@@ -20,7 +19,7 @@ export class FsRatingStarComponent {
   public index: number;
 
   @Input()
-  public unselectedColor = '#c4c4c4';
+  public unselectedColor = '#E7E7E7';
 
   @Input()
   public selectedColor = '#F8C100';
@@ -32,13 +31,6 @@ export class FsRatingStarComponent {
   @Input()
   set value(value) {
     this._value = value;
-
-    if (typeof (value) === 'number') {
-      this.type = this.index <= value
-        ? StarTypes.Filled
-        : StarTypes.Empty;
-    }
-
     this._updateType();
   }
 
@@ -46,6 +38,7 @@ export class FsRatingStarComponent {
   public selected = false;
 
   public types = StarTypes;
+  public halfWidth = 100;
 
   private _type: StarTypes = StarTypes.Empty;
   private _value: number;
@@ -67,27 +60,16 @@ export class FsRatingStarComponent {
   }
 
   private _updateType() {
-    const isInt = Number.isInteger(this.value);
 
-    if (isInt) {
-      this.type = this.index <= this.value
-        ? StarTypes.Filled
-        : StarTypes.Empty;
-    } else {
-      /**
-       * index = 4
-       * value = 4.5
-       * type = filled
-       *
-       * index = 5
-       * value = 4.5
-       * type = half
-       */
+    console.log(this.value, this.index);
+    this.type = StarTypes.Empty;
+    const value = this.value - (this.index - 1);
 
-      if (this.index <= this.value) {
-        this.type = StarTypes.Filled
-      } else if (Math.ceil(this.value) === this.index) {
-        this.type = StarTypes.Half;
+    if (value > 0) {
+      this.type = value >= 1 ? StarTypes.Filled : StarTypes.Half;
+
+      if (this.type === StarTypes.Half) {
+        this.halfWidth = value * 100;
       }
     }
   }

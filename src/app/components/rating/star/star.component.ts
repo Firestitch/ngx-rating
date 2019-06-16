@@ -61,7 +61,6 @@ export class FsRatingStarComponent {
 
   private _updateType() {
 
-    console.log(this.value, this.index);
     this.type = StarTypes.Empty;
     const value = this.value - (this.index - 1);
 
@@ -69,7 +68,7 @@ export class FsRatingStarComponent {
       this.type = value >= 1 ? StarTypes.Filled : StarTypes.Half;
 
       if (this.type === StarTypes.Half) {
-        this.halfWidth = value * 100;
+        this.halfWidth = 50;
       }
     }
   }

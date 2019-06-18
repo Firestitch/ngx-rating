@@ -1,8 +1,8 @@
 {
   "name": "@firestitch/rating",
   "title": "Rating",
-  "description": "@firestitch/package",
-  "version": "7.0.5",
+  "description": "@firestitch/rating",
+  "version": "7.0.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-rating"

@@ -1,11 +1,11 @@
-<span class="rating-value" *ngIf="showValue">{{visibleValue}}</span>
-
 <ng-container *ngFor="let star of stars;">
   <fs-rating-star [value]="value"
                   [unselectedColor]="unselectedColor"
                   [selectedColor]="selectedColor"
                   [index]="star"
                   [labelTemplate]="labelTemplates[star - 1]"
-                  (click)="selectStar(star)"
-  ></fs-rating-star>
+                  (click)="selectStar(star)">
+  </fs-rating-star>
 </ng-container>
+
+<span class="rating-value" *ngIf="showValue">{{visibleValue}}</span>

@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component, HostBinding, Input, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, TemplateRef, Inject } from '@angular/core';
 import { FsRatingLabelDirective } from '../../../directives/rating-label.directive';
+import { FS_RATING_CONFIG } from '../../../injectors/rating-config';
+import { FsRatingConfig } from '../../../interfaces/rating-config';
 
 enum StarTypes {
   Filled = 'filled',
@@ -18,11 +20,13 @@ export class FsRatingStarComponent {
   @Input()
   public index: number;
 
-  @Input()
-  public unselectedColor = '#E7E7E7';
+  @Input('unselectedColor') set setUnselectedColor(value) {
+    this.unselectedColor = value;
+  }
 
-  @Input()
-  public selectedColor = '#F8C100';
+  @Input('selectedColor') set setselectedColor(value) {
+    this.selectedColor = value;
+  }
 
   @Input()
   @HostBinding('class.with-labels')
@@ -39,11 +43,16 @@ export class FsRatingStarComponent {
 
   public types = StarTypes;
   public halfWidth = 100;
-
+  public unselectedColor;
+  public selectedColor;
   private _type: StarTypes = StarTypes.Empty;
   private _value: number;
 
-  constructor() {}
+  constructor(@Inject(FS_RATING_CONFIG) config: FsRatingConfig
+  ) {
+    this.selectedColor = config.selectedColor;
+    this.unselectedColor = config.unselectedColor;
+  }
 
   set type(value) {
     this._type = value;

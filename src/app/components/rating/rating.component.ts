@@ -9,10 +9,13 @@ import {
   OnInit,
   QueryList,
   TemplateRef,
+  Inject,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { FsRatingLabelDirective } from '../../directives/rating-label.directive';
+import { FS_RATING_CONFIG } from './../../injectors/rating-config';
+import { FsRatingConfig } from './../../interfaces/rating-config';
 
 
 @Component({
@@ -35,13 +38,15 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
   };
 
   @Input()
-  public showValue = true;
+  public showValue = false;
 
-  @Input()
-  public unselectedColor = '#E7E7E7';
+  @Input('unselectedColor') set setUnselectedColor(value) {
+    this.unselectedColor = value;
+  }
 
-  @Input()
-  public selectedColor = '#F8C100';
+  @Input('selectedColor') set setselectedColor(value) {
+    this.selectedColor = value;
+  }
 
   @Input()
   @HostBinding('class.selectable')
@@ -60,13 +65,19 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
   public visibleValue = 0;
   public stars: number[] = [];
   public labelTemplates: TemplateRef<FsRatingLabelDirective>[] = [];
+  public unselectedColor;
+  public selectedColor;
 
   private _value: number;
   private _maxRange = 5;
 
   constructor(
     private _cd: ChangeDetectorRef,
-  ) {}
+    @Inject(FS_RATING_CONFIG) config: FsRatingConfig
+  ) {
+    this.selectedColor = config.selectedColor;
+    this.unselectedColor = config.unselectedColor;
+  }
 
   set value(value) {
     if (value !== this._value) {
@@ -87,7 +98,6 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
   public ngOnInit(): void {
     this.initStars();
   }
-
 
   public writeValue(value) {
     const val = +value;

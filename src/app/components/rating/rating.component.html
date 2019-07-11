@@ -1,10 +1,11 @@
 <ng-container *ngFor="let star of stars;">
-  <fs-rating-star [value]="value"
-                  [unselectedColor]="unselectedColor"
-                  [selectedColor]="selectedColor"
-                  [index]="star"
-                  [labelTemplate]="labelTemplates[star - 1]"
-                  (click)="selectStar(star)">
+  <fs-rating-star
+    [value]="value"
+    [unselectedColor]="unselectedColor"
+    [selectedColor]="selectedColor"
+    [index]="star"
+    [labelTemplate]="labelTemplates[star - 1]"
+    (click)="selectStar(star)">
   </fs-rating-star>
 </ng-container>
 

@@ -34,16 +34,20 @@ export class FsRatingModule {
       providers: [
         {
           provide: FS_RATING_CONFIG,
-          useValue: Object.assign(
-            {},
-            {
-              unselectedColor: '#E7E7E7',
-              selectedColor: '#F8C100'
-            },
-            config || {}
-          )
+          useFactory: FsRatingConfigFactory
         }
       ]
     };
   }
+}
+
+export function FsRatingConfigFactory(config: FsRatingConfig) {
+  return Object.assign(
+    {},
+    {
+      unselectedColor: '#E7E7E7',
+      selectedColor: '#F8C100'
+    },
+    config || {}
+  );
 }

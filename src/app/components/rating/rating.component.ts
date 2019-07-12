@@ -14,7 +14,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { FsRatingLabelDirective } from '../../directives/rating-label.directive';
-import { FS_RATING_CONFIG } from './../../injectors/rating-config';
+import { FS_RATING_DEFAULT_CONFIG } from './../../injectors/rating-config';
 import { FsRatingConfig } from './../../interfaces/rating-config';
 
 
@@ -73,7 +73,7 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
 
   constructor(
     private _cd: ChangeDetectorRef,
-    @Inject(FS_RATING_CONFIG) config: FsRatingConfig
+    @Inject(FS_RATING_DEFAULT_CONFIG) config: FsRatingConfig
   ) {
     this.selectedColor = config.selectedColor;
     this.unselectedColor = config.unselectedColor;

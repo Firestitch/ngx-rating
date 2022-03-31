@@ -28,7 +28,7 @@ import { FsRatingConfig } from './interfaces/rating-config';
   ],
 })
 export class FsRatingModule {
-  static forRoot(config: FsRatingConfig = {}): ModuleWithProviders {
+  static forRoot(config: FsRatingConfig = {}): ModuleWithProviders<FsRatingModule> {
     return {
       ngModule: FsRatingModule,
       providers: [

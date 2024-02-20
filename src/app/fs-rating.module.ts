@@ -9,23 +9,19 @@ import { FsRatingConfig } from './interfaces/rating-config';
 
 
 @NgModule({
-  imports: [
-    CommonModule,
-  ],
-  exports: [
-    FsRatingComponent,
-    FsRatingLabelDirective,
-  ],
-  entryComponents: [
-  ],
-  declarations: [
-    FsRatingComponent,
-    FsRatingStarComponent,
-
-    FsRatingLabelDirective,
-  ],
-  providers: [
-  ],
+    imports: [
+        CommonModule,
+    ],
+    exports: [
+        FsRatingComponent,
+        FsRatingLabelDirective,
+    ],
+    declarations: [
+        FsRatingComponent,
+        FsRatingStarComponent,
+        FsRatingLabelDirective,
+    ],
+    providers: []
 })
 export class FsRatingModule {
   static forRoot(config: FsRatingConfig = {}): ModuleWithProviders<FsRatingModule> {

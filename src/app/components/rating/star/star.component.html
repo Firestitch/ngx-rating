@@ -1,27 +1,26 @@
-<ng-container *ngIf="!!labelTemplate; else withoutLabels">
+@if (!!labelTemplate) {
   <ng-template [ngTemplateOutlet]="star"></ng-template>
   <span class="label">
     <ng-template [ngTemplateOutlet]="labelTemplate"></ng-template>
   </span>
-</ng-container>
-
-<ng-template #withoutLabels>
+} @else {
   <ng-template [ngTemplateOutlet]="star"></ng-template>
-</ng-template>
+}
+
 
 <ng-template #star>
   <div class="star" [ngClass]="type">
-    <ng-container [ngSwitch]="type">
-      <ng-container *ngSwitchCase="types.Filled">
+    @switch (type) {
+      @case (types.Filled) {
         <i class="material-icons selected" [style.color]="selectedColor">star</i>
-      </ng-container>
-      <ng-container *ngSwitchCase="types.Half">
+      }
+      @case (types.Half) {
         <i class="material-icons selected" [style.color]="selectedColor" [style.width]="halfWidth + '%'">star</i>
         <i class="material-icons unselected" [style.color]="unselectedColor">star</i>
-      </ng-container>
-      <ng-container *ngSwitchCase="types.Empty">
+      }
+      @case (types.Empty) {
         <i class="material-icons unselected" [style.color]="unselectedColor">star</i>
-      </ng-container>
-    </ng-container>
+      }
+    }
   </div>
 </ng-template>

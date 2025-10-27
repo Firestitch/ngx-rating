@@ -1,4 +1,4 @@
-<ng-container *ngFor="let star of stars;">
+@for (star of stars; track star) {
   <fs-rating-star
     [value]="value"
     [unselectedColor]="unselectedColor"
@@ -7,6 +7,8 @@
     [labelTemplate]="labelTemplates[star - 1]"
     (click)="selectStar(star)">
   </fs-rating-star>
-</ng-container>
+}
 
-<span class="rating-value" *ngIf="showValue">{{visibleValue}}</span>
+@if (showValue) {
+  <span class="rating-value">{{visibleValue}}</span>
+}

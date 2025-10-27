@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, TemplateRef, In
 import { FsRatingLabelDirective } from '../../../directives/rating-label.directive';
 import { FS_RATING_DEFAULT_CONFIG } from '../../../injectors/rating-config';
 import { FsRatingConfig } from '../../../interfaces/rating-config';
+import { NgTemplateOutlet, NgClass } from '@angular/common';
 
 enum StarTypes {
   Filled = 'filled',
@@ -10,10 +11,12 @@ enum StarTypes {
 }
 
 @Component({
-  selector: 'fs-rating-star',
-  templateUrl: 'star.component.html',
-  styleUrls: [ 'star.component.scss' ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'fs-rating-star',
+    templateUrl: 'star.component.html',
+    styleUrls: ['star.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgTemplateOutlet, NgClass]
 })
 export class FsRatingStarComponent {
 

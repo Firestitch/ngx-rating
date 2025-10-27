@@ -11,14 +11,12 @@ import { FsRatingConfig } from './interfaces/rating-config';
 @NgModule({
     imports: [
         CommonModule,
+        FsRatingComponent,
+        FsRatingStarComponent,
+        FsRatingLabelDirective,
     ],
     exports: [
         FsRatingComponent,
-        FsRatingLabelDirective,
-    ],
-    declarations: [
-        FsRatingComponent,
-        FsRatingStarComponent,
         FsRatingLabelDirective,
     ],
     providers: []

@@ -16,18 +16,21 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FsRatingLabelDirective } from '../../directives/rating-label.directive';
 import { FS_RATING_DEFAULT_CONFIG } from './../../injectors/rating-config';
 import { FsRatingConfig } from './../../interfaces/rating-config';
+import { FsRatingStarComponent } from './star/star.component';
 
 
 @Component({
-  selector: 'fs-rating',
-  templateUrl: 'rating.component.html',
-  styleUrls: [ 'rating.component.scss' ],
-  providers: [{
-    provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => FsRatingComponent),
-    multi: true
-  }],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fs-rating',
+    templateUrl: 'rating.component.html',
+    styleUrls: ['rating.component.scss'],
+    providers: [{
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => FsRatingComponent),
+            multi: true
+        }],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsRatingStarComponent],
 })
 export class FsRatingComponent implements OnInit, ControlValueAccessor {
 

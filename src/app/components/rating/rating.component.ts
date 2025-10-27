@@ -1,16 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ContentChildren,
-  forwardRef,
-  HostBinding,
-  Input,
-  OnInit,
-  QueryList,
-  TemplateRef,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChildren, forwardRef, HostBinding, Input, OnInit, QueryList, TemplateRef, inject } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { FsRatingLabelDirective } from '../../directives/rating-label.directive';
@@ -33,6 +21,8 @@ import { FsRatingStarComponent } from './star/star.component';
     imports: [FsRatingStarComponent],
 })
 export class FsRatingComponent implements OnInit, ControlValueAccessor {
+  private _cd = inject(ChangeDetectorRef);
+
 
   @Input()
   set maxRange(value) {
@@ -74,10 +64,9 @@ export class FsRatingComponent implements OnInit, ControlValueAccessor {
   private _value: number;
   private _maxRange = 5;
 
-  constructor(
-    private _cd: ChangeDetectorRef,
-    @Inject(FS_RATING_DEFAULT_CONFIG) config: FsRatingConfig
-  ) {
+  constructor() {
+    const config = inject<FsRatingConfig>(FS_RATING_DEFAULT_CONFIG);
+
     this.selectedColor = config.selectedColor;
     this.unselectedColor = config.unselectedColor;
   }
